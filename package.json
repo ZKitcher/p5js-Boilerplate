@@ -1,0 +1,14 @@
+{
+    "name": "create-p5jsboiler",
+    "version": "0.1.17",
+    "bin": "./bin/cli.js",
+    "homepage": "https://github.com/ZKitcher/create-p5jsBoiler",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ZKitcher/create-p5jsBoiler.git"
+    },
+    "scripts": {
+        "build": "node fileScraper.js",
+        "publishNPM": "npm publish --access=public"
+    }
+}
