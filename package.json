@@ -8,7 +8,6 @@
         "url": "https://github.com/ZKitcher/create-p5jsBoiler.git"
     },
     "scripts": {
-        "build": "node fileScraper.js",
-        "publishNPM": "npm publish --access=public"
+        "build": "node fileScraper.js"
     }
 }
