@@ -9,4 +9,4 @@ npx create-p5jsboiler app-name
 cd app-name
 ```
 
--   Run `npm run build` to create the _requre.js file to import the required html files into index.html onload.
+-   Run `npm run build` to create the _requre.js file to import the required js files from your `src` folder into index.html onload.

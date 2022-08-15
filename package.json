@@ -1,10 +1,10 @@
 {
     "name": "p5js-boilerplate",
-    "version": "0.2.0",
-    "homepage": "https://github.com/ZKitcher/create-p5jsBoiler",
+    "version": "0.2.1",
+    "homepage": "https://github.com/ZKitcher/p5js-Boilerplate",
     "repository": {
         "type": "git",
-        "url": "https://github.com/ZKitcher/create-p5jsBoiler.git"
+        "url": "https://github.com/ZKitcher/p5js-Boilerplate.git"
     },
     "scripts": {
         "build": "node fileScraper.js"

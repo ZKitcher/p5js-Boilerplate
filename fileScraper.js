@@ -15,8 +15,3 @@ const getFiles = dirPath => {
     });
 };
 getFiles(path.join(__dirname, 'src'));
-
-fs.rm(path.join(__dirname, 'bin'), { recursive: true }, err => {
-    if (err) return;
-    console.log(`bin folder removed.`);
-});
