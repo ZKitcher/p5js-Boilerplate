@@ -1,5 +1,5 @@
 {
-    "name": "create-p5jsboiler",
+    "name": "p5js-boilerplate",
     "version": "0.1.17",
     "bin": "./bin/cli.js",
     "homepage": "https://github.com/ZKitcher/create-p5jsBoiler",
