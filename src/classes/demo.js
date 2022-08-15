@@ -12,8 +12,8 @@ class Demo {
             'A Home Bird'
         ]);
         this.pos = createVector(random(200, width - 200), random(200, height - 200));;
-        this.xspeed = 5;
-        this.yspeed = 5;
+        this.xspeed = random([random(5, 10), random(-10, -5)]);
+        this.yspeed = random([random(5, 10), random(-10, -5)]);
     }
 
     run(){
