@@ -11,6 +11,26 @@ npx create-p5jsboiler app-name
 cd app-name
 ```
 
+It will create a directory called `app-name` inside the current folder.
+Inside that directory, it will generate the initial project structure.
+
+```sh
+app-name
+├── README.md
+├── _require.js
+├── fileScraper.js
+├── index.html
+├── package.json
+└── src
+    ├── classes
+        └── demo.js
+    ├── scripts
+        ├── index.js
+        └── initialise.js
+    └── styleSheets
+        └── style.css
+```
+
 -   Run `npm run build` to create the `_requre.js` file to import the required js files from your `src` folder into index.html onload.
 
 -   `setup` and `draw` functions both found in `./src/scripts/index.js`.
