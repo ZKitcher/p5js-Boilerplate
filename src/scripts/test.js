@@ -7,7 +7,7 @@ const getRefresh = (now) => {
         console.log(fps) 
     }
 
-    window.requestAnimationFrame(animate);
+    window.requestAnimationFrame(getRefresh);
 };
 
-window.requestAnimationFrame(animate);
+window.requestAnimationFrame(getRefresh);
