@@ -3,9 +3,9 @@ const checkRefresh = () => {
 }
 
 let customLoop = false;
-let t = []
+let t = [];
 let frameInterval = 16;
-const getRefresh = (now) => {
+const getRefresh = now => {
     t.unshift(now);
     if (t.length > 10) {
         let t0 = t.pop();

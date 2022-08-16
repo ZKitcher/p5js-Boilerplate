@@ -11,3 +11,7 @@ body {
 canvas {
     display: block;
 }
+
+main {
+    overflow: hidden;
+}
