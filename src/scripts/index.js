@@ -1,11 +1,14 @@
 let demo;
 
 function setup() {
+    checkRefresh();
     createCanvas(window.innerWidth, window.innerHeight);
+    
     demo = new Demo();
 }
 
 function draw() {
+    if (customLoop) setTimeout(redraw, 17);
     push();
     background(51);
     pop();
