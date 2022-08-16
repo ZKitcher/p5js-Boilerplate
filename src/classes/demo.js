@@ -1,18 +1,15 @@
-// Daniel Shiffman
-// https://thecodingtrain.com/CodingChallenges/093-double-pendulum.html
-
 class Demo {
     constructor() {
-        this.r1 = random(200, 400);
-        this.r2 = random(150, 400);
-        this.m1 = random(10, 30);
-        this.m2 = random(10, 30);
-        this.a1 = PI / 2;
-        this.a2 = PI / 2;
-        this.a1_v = 0;
-        this.a2_v = 0;
+        this.length1 = height / 3;
+        this.length2 = height / 3;
+        this.mass1 = 20;
+        this.mass2 = 20;
+        this.angle1 = PI / 2;
+        this.angle2 = PI / random(1.9, 2.1);
+        this.angle1Velocity = 0;
+        this.angle2Velocity = 0;
         this.cx = width / 2;
-        this.cy = height - (this.r1 + this.r2 + 100);
+        this.cy = height - (this.length1 + this.length2 + 100);
 
         this.g = 1;
         this.px2 = -1;
@@ -23,9 +20,9 @@ class Demo {
         this.x2;
         this.y2;
 
-        this.buffer = createGraphics(width, height);
-        this.buffer.background(51);
-        this.buffer.translate(this.cx, this.cy);
+        this.image = createGraphics(width, height);
+        this.image.background(51);
+        this.image.translate(this.cx, this.cy);
 
         this.startColor = this.randomColour();
         this.newColor = this.randomColour();
@@ -38,30 +35,30 @@ class Demo {
     }
 
     update() {
-        let num1 = -this.g * (2 * this.m1 + this.m2) * sin(this.a1);
-        let num2 = -this.m2 * this.g * sin(this.a1 - 2 * this.a2);
-        let num3 = -2 * sin(this.a1 - this.a2) * this.m2;
-        let num4 = this.a2_v * this.a2_v * this.r2 + this.a1_v * this.a1_v * this.r1 * cos(this.a1 - this.a2);
-        let den = this.r1 * (2 * this.m1 + this.m2 - this.m2 * cos(2 * this.a1 - 2 * this.a2));
+        let num1 = -this.g * (2 * this.mass1 + this.mass2) * sin(this.angle1);
+        let num2 = -this.mass2 * this.g * sin(this.angle1 - 2 * this.angle2);
+        let num3 = -2 * sin(this.angle1 - this.angle2) * this.mass2;
+        let num4 = this.angle2Velocity * this.angle2Velocity * this.length2 + this.angle1Velocity * this.angle1Velocity * this.length1 * cos(this.angle1 - this.angle2);
+        let den = this.length1 * (2 * this.mass1 + this.mass2 - this.mass2 * cos(2 * this.angle1 - 2 * this.angle2));
         let a1_a = (num1 + num2 + num3 * num4) / den;
 
-        num1 = 2 * sin(this.a1 - this.a2);
-        num2 = (this.a1_v * this.a1_v * this.r1 * (this.m1 + this.m2));
-        num3 = this.g * (this.m1 + this.m2) * cos(this.a1);
-        num4 = this.a2_v * this.a2_v * this.r2 * this.m2 * cos(this.a1 - this.a2);
-        den = this.r2 * (2 * this.m1 + this.m2 - this.m2 * cos(2 * this.a1 - 2 * this.a2));
+        num1 = 2 * sin(this.angle1 - this.angle2);
+        num2 = (this.angle1Velocity * this.angle1Velocity * this.length1 * (this.mass1 + this.mass2));
+        num3 = this.g * (this.mass1 + this.mass2) * cos(this.angle1);
+        num4 = this.angle2Velocity * this.angle2Velocity * this.length2 * this.mass2 * cos(this.angle1 - this.angle2);
+        den = this.length2 * (2 * this.mass1 + this.mass2 - this.mass2 * cos(2 * this.angle1 - 2 * this.angle2));
         let a2_a = (num1 * (num2 + num3 + num4)) / den;
 
-        this.x1 = this.r1 * sin(this.a1);
-        this.y1 = this.r1 * cos(this.a1);
+        this.x1 = this.length1 * sin(this.angle1);
+        this.y1 = this.length1 * cos(this.angle1);
 
-        this.x2 = this.x1 + this.r2 * sin(this.a2);
-        this.y2 = this.y1 + this.r2 * cos(this.a2);
+        this.x2 = this.x1 + this.length2 * sin(this.angle2);
+        this.y2 = this.y1 + this.length2 * cos(this.angle2);
 
-        this.a1_v += a1_a;
-        this.a2_v += a2_a;
-        this.a1 += this.a1_v;
-        this.a2 += this.a2_v;
+        this.angle1Velocity += a1_a;
+        this.angle2Velocity += a2_a;
+        this.angle1 += this.angle1Velocity;
+        this.angle2 += this.angle2Velocity;
     }
 
     randomColour() {
@@ -71,22 +68,20 @@ class Demo {
     render() {
         push()
         imageMode(CORNER);
-        image(this.buffer, 0, 0, width, height);
+        image(this.image, 0, 0, width, height);
 
         translate(this.cx, this.cy);
         stroke(0);
         strokeWeight(3);
 
-
         line(0, 0, this.x1, this.y1);
         line(this.x1, this.y1, this.x2, this.y2);
         fill(255);
-        ellipse(this.x1, this.y1, this.m1, this.m1);
-        ellipse(this.x2, this.y2, this.m2, this.m2);
-
+        ellipse(this.x1, this.y1, this.mass1, this.mass1);
+        ellipse(this.x2, this.y2, this.mass2, this.mass2);
 
         const rainbow = lerpColor(this.startColor, this.newColor, this.amt)
-        this.buffer.stroke(rainbow);
+        this.image.stroke(rainbow);
         this.amt += 0.01;
 
         if (this.amt >= 1) {
@@ -95,13 +90,13 @@ class Demo {
             this.newColor = this.randomColour();
         }
 
-        if (frameCount > 1) this.buffer.line(this.px2, this.py2, this.x2, this.y2);
-        
+        if (frameCount > 1) this.image.line(this.px2, this.py2, this.x2, this.y2);
+
         textAlign(CENTER);
         textSize(30);
         fill(rainbow)
         strokeWeight(1);
-        text('p5js Boiler DEMO', 0, -100)
+        text('p5.js Boilerplate DEMO', 0, -100)
 
         this.px2 = this.x2;
         this.py2 = this.y2;

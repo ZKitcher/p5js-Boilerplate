@@ -14,13 +14,12 @@ function draw() {
     pop();
 
     run();
+    render()
 }
 
 const run = () => {
-    // RUN objects here
+    // Run/Update objects here
     demo.run();
-
-    render()
 }
 
 const render = () => {
@@ -48,5 +47,5 @@ function keyPressed() {
 
 function mouseClicked() {
     // Function fired on mouse click events.
-
+    demo.angle2Velocity += demo.angle2Velocity ? -0.1 : 0.1
 }
