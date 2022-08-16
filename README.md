@@ -31,6 +31,6 @@ app-name
         └── style.css
 ```
 
--   Run `npm run build` to create the `_requre.js` file to import the required js files from your `src` folder into index.html onload.
+-   Run `npm run build` after creating new script files to create/remake the `_requre.js` file that will import the files from your `src` folder into index.html on load.
 
 -   `setup` and `draw` functions both found in `./src/scripts/index.js`.
