@@ -21,14 +21,13 @@ app-name
 ├── fileScraper.js
 ├── index.html
 ├── package.json
+├── style.css
 └── src
     ├── classes
         └── demo.js
-    ├── scripts
+    └── scripts
         ├── index.js
         └── initialise.js
-    └── styleSheets
-        └── style.css
 ```
 
 -   Run `npm run build` after creating new script files to create/remake the `_requre.js` file that will import the files from your `src` folder into index.html on load.
