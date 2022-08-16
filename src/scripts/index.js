@@ -8,7 +8,7 @@ function setup() {
 }
 
 function draw() {
-    if (customLoop) setTimeout(redraw, 17);
+    if (customLoop) setTimeout(redraw, frameInterval);
     push();
     background(51);
     pop();
@@ -48,5 +48,5 @@ function keyPressed() {
 
 function mouseClicked() {
     // Function fired on mouse click events.
-    
+
 }
