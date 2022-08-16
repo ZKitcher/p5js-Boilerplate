@@ -3,7 +3,7 @@ let demo;
 function setup() {
     checkRefresh();
     createCanvas(window.innerWidth, window.innerHeight);
-    
+
     demo = new Demo();
 }
 
@@ -46,4 +46,7 @@ function keyPressed() {
     }
 }
 
-function mouseClicked() { }
+function mouseClicked() {
+    // Function fired on mouse click events.
+    
+}
