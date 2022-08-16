@@ -2,9 +2,10 @@ const checkRefresh = () => {
     window.requestAnimationFrame(getRefresh);
 }
 
+let targetFrameRate = 60;
 let customLoop = false;
 let t = [];
-let frameInterval = 16;
+let frameInterval;
 const getRefresh = now => {
     t.unshift(now);
     if (t.length > 10) {
@@ -21,6 +22,7 @@ const getRefresh = now => {
 
 const enableCustomLoop = () => {
     console.log('Setting custom framerate.')
+    frameInterval = 1000 / targetFrameRate;
     noLoop();
     customLoop = true;
 }

@@ -47,5 +47,5 @@ function keyPressed() {
 
 function mouseClicked() {
     // Function fired on mouse click events.
-    demo.angle2Velocity += demo.angle2Velocity ? -0.1 : 0.1
+    demo.angle2Velocity += -0.1;
 }
