@@ -1,27 +1,34 @@
-const checkRefresh = () => {
-    window.requestAnimationFrame(getRefresh);
-}
-
 let targetFrameRate = 60;
 let customLoop = false;
-let t = [];
 let frameInterval;
-const getRefresh = now => {
-    t.unshift(now);
-    if (t.length > 10) {
-        let t0 = t.pop();
-        let fps = Math.floor(1000 * 10 / (now - t0));
-        console.log('FrameRate:', fps)
-        if (fps <= 30) {
-            enableCustomLoop()
+
+const checkFramerate = (target = 60) => {
+    targetFrameRate = target
+    getRefresh()
+}
+
+const getRefresh = times => {
+    let found = false;
+    if (times === undefined) times = [];
+    window.requestAnimationFrame(() => {
+        const now = performance.now();
+        while (times.length > 0 && times[0] <= now - 200) {
+            times.shift();
+            found = true;
         }
-    } else {
-        window.requestAnimationFrame(getRefresh);
-    }
+        if (found) {
+            let fps = times.length * 5;
+            console.log('Framerate:', '~' + fps + 'fps')
+            if (fps <= targetFrameRate - 10) enableCustomLoop();
+        } else {
+            times.push(now);
+            getRefresh(times);
+        }
+    });
 };
 
 const enableCustomLoop = () => {
-    console.log('Setting custom framerate.')
+    console.log('Setting custom framerate targeting:', targetFrameRate + 'fps')
     frameInterval = 1000 / targetFrameRate;
     noLoop();
     customLoop = true;

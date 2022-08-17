@@ -3,7 +3,7 @@ class Demo {
         this.length1 = height / 3;
         this.length2 = height / 3;
         this.mass1 = 20;
-        this.mass2 = 20;
+        this.mass2 = 10;
         this.angle1 = PI / 2;
         this.angle2 = PI / random(1.9, 2.1);
         this.angle1Velocity = 0;

@@ -1,9 +1,9 @@
 let demo;
 
 function setup() {
-    checkRefresh();
+    checkFramerate();
     createCanvas(window.innerWidth, window.innerHeight);
-
+    
     demo = new Demo();
 }
 
@@ -47,5 +47,5 @@ function keyPressed() {
 
 function mouseClicked() {
     // Function fired on mouse click events.
-    demo.angle2Velocity += -0.1;
+    demo.angle1Velocity += demo.angle1Velocity > 0 ? 0.05 : -0.05;
 }
