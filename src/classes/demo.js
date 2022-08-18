@@ -24,8 +24,18 @@ class Demo {
         this.image.background(51);
         this.image.translate(this.cx, this.cy);
 
-        this.startColor = this.randomColour();
-        this.newColor = this.randomColour();
+        this.colours = [
+            color(255, 0, 0),
+            color(255, 255, 0),
+            color(0, 255, 0),
+            color(0, 255, 255),
+            color(0, 0, 255),
+            color(255, 0, 255),
+        ]
+
+        this.colourIndex = 0;
+        this.startColor = this.colours[this.colourIndex];
+        this.newColor = this.colours[this.colourIndex + 1];
         this.amt = 0;
     }
 
@@ -68,14 +78,6 @@ class Demo {
         this.angle2 += this.angle2Velocity;
     }
 
-    randomColour() {
-        let c = [random(1, 255), random(1, 255), random(1, 255)];
-        while (Math.abs(c[0] - c[1]) < 25 && Math.abs(c[1] - c[2]) < 25) {
-            c = [random(1, 255), random(1, 255), random(1, 255)];
-        }
-        return color(c);
-    }
-
     render() {
         push()
         imageMode(CORNER);
@@ -97,8 +99,10 @@ class Demo {
 
         if (this.amt >= 1) {
             this.amt = 0.0;
-            this.startColor = this.newColor;
-            this.newColor = this.randomColour();
+            this.colourIndex++;
+            if (this.colourIndex === this.colours.length) this.colourIndex = 0;
+            this.startColor = this.colours[this.colourIndex];
+            this.newColor = this.colours[this.colourIndex === this.colours.length - 1 ? 0 : this.colourIndex + 1];
         }
 
         if (frameCount > 1) this.image.line(this.px2, this.py2, this.x2, this.y2);
