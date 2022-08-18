@@ -1,7 +1,7 @@
 class Demo {
     constructor() {
-        this.length1 = height / 3;
-        this.length2 = height / 3;
+        this.length1 = Math.round(height / 3);
+        this.length2 = Math.round(height / 3);
         this.mass1 = 20;
         this.mass2 = 10;
         this.angle1 = PI / 2;
@@ -57,6 +57,14 @@ class Demo {
 
         this.angle1Velocity += a1_a;
         this.angle2Velocity += a2_a;
+
+        const limit = 0.1;
+        if (Math.abs(this.angle1Velocity) > limit && Math.abs(this.angle2Velocity) > limit) {
+            this.angle1Velocity *= 0.95
+            this.angle2Velocity *= 0.95
+            console.log('redice')
+        }
+
         this.angle1 += this.angle1Velocity;
         this.angle2 += this.angle2Velocity;
     }

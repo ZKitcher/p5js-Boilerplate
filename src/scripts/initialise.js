@@ -28,7 +28,7 @@ const getRefresh = times => {
 };
 
 const enableCustomLoop = () => {
-    console.log('Setting custom framerate targeting:', targetFrameRate + 'fps')
+    console.log('Setting custom framerate targeting:', targetFrameRate + 'fps');
     frameInterval = 1000 / targetFrameRate;
     noLoop();
     customLoop = true;

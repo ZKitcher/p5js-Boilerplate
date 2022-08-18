@@ -3,7 +3,7 @@ let demo;
 function setup() {
     checkFramerate();
     createCanvas(window.innerWidth, window.innerHeight);
-    
+
     demo = new Demo();
 }
 
