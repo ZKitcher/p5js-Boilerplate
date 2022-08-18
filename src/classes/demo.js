@@ -58,11 +58,10 @@ class Demo {
         this.angle1Velocity += a1_a;
         this.angle2Velocity += a2_a;
 
-        const limit = 0.1;
+        const limit = 0.09;
         if (Math.abs(this.angle1Velocity) > limit && Math.abs(this.angle2Velocity) > limit) {
-            this.angle1Velocity *= 0.95
-            this.angle2Velocity *= 0.95
-            console.log('redice')
+            this.angle1Velocity *= 0.99;
+            this.angle2Velocity *= 0.99;
         }
 
         this.angle1 += this.angle1Velocity;
@@ -70,7 +69,11 @@ class Demo {
     }
 
     randomColour() {
-        return color(random(25, 255), random(25, 255), random(25, 255))
+        let c = [random(1, 255), random(1, 255), random(1, 255)];
+        while (Math.abs(c[0] - c[1]) < 25 && Math.abs(c[1] - c[2]) < 25) {
+            c = [random(1, 255), random(1, 255), random(1, 255)];
+        }
+        return color(c);
     }
 
     render() {
@@ -86,7 +89,7 @@ class Demo {
         line(this.x1, this.y1, this.x2, this.y2);
         fill(255);
         ellipse(this.x1, this.y1, this.mass1, this.mass1);
-        ellipse(this.x2, this.y2, this.mass2, this.mass2);
+        ellipse(this.x2, this.y2, this.mass2 * 1.5, this.mass2 * 1.5);
 
         const rainbow = lerpColor(this.startColor, this.newColor, this.amt)
         this.image.stroke(rainbow);
