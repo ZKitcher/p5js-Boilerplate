@@ -10,9 +10,9 @@ const getFiles = (dir, done) => {
     let content = [];
     fs.readdir(dir, (err, list) => {
         if (err) return done(err);
-        var i = 0;
+        let i = 0;
         (function next() {
-            var file = list[i++];
+            let file = list[i++];
             if (!file) return done(null, results, content);
             file = path.resolve(dir, file);
             fs.stat(file, (err, stat) => {
