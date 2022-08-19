@@ -2,31 +2,50 @@ const packageJson = require('./package.json');
 const path = require('path');
 const fs = require('fs');
 const { buildMainFile } = packageJson;
-
 const requireFile = '_require.js';
-const createScript = '.forEach(b=>{var a=document.createElement("script");a.src=b,a.defer=!0,document.head.appendChild(a)})';
+const createScript = '.reverse().forEach(b=>{var a=document.createElement("script");a.src=b,a.defer=!0,document.head.appendChild(a)})';
 
-let res = [];
-let content = [];
-const getFiles = dirPath => {
-    fs.readdir(dirPath, (err, files) => {
-        if (err) return console.log('Unable to scan directory:', err);
-        files.forEach(e => {
-            if (e.match(/\./)) {
-                res.push(path.join(dirPath.replace(__dirname, ''), e).substring(1))
-                if (buildMainFile) {
-                    fs.readFile(dirPath + '\\' + e, (err, buff) => {
-                        if (err) return console.error(err);
-                        content.push(buff.toString());
-                        fs.writeFileSync('main.js', content.join('\n'));
+const getFiles = (dir, done) => {
+    let results = [];
+    let content = [];
+    fs.readdir(dir, (err, list) => {
+        if (err) return done(err);
+        var i = 0;
+        (function next() {
+            var file = list[i++];
+            if (!file) return done(null, results, content);
+            file = path.resolve(dir, file);
+            fs.stat(file, (err, stat) => {
+                if (stat && stat.isDirectory()) {
+                    getFiles(file, function (err, res, con) {
+                        results = results.concat(res);
+                        content = content.concat(con);
+                        next();
                     });
+                } else {
+                    fs.readFile(file, (err, buff) => {
+                        if (err) return console.error(err);
+                        const buffer = buff.toString();
+                        const path = file.replace(__dirname, '').substring(1);
+                        if (buffer.match('extends')) {
+                            content.unshift(buffer);
+                            results.unshift(path);
+                        } else {
+                            content.push(buffer);
+                            results.push(path);
+                        }
+                        next();
+                    })
                 }
-            } else {
-                getFiles(path.join(dirPath, e))
-            }
-        });
-        fs.writeFileSync(requireFile, JSON.stringify(res) + createScript);
+            });
+        })();
     });
 };
 
-getFiles(path.join(__dirname, 'src'));
+getFiles(path.join(__dirname, 'src'), (err, results, content) => {
+    if (err) throw err;
+    fs.writeFileSync(requireFile, JSON.stringify(results) + createScript);
+    if (buildMainFile) {
+        fs.writeFileSync('main.js', content.join('\n'));
+    }
+});
