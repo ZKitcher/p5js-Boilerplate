@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const { buildMainFile } = packageJson;
 const requireFile = '_require.js';
-const createScript = '.reverse().forEach(b=>{var a=document.createElement("script");a.src=b,a.defer=!0,document.head.appendChild(a)})';
+const createScript = '.reverse().forEach(b=>{let a=document.createElement("script");a.src=b,a.defer=!0,document.head.appendChild(a)})';
 
 const getFiles = (dir, done) => {
     let results = [];
