@@ -36,9 +36,9 @@ const renderText = () => {
     pop();
 }
 
-function keyPressed() {
+function keyPressed(e) {
     // Switch case for key pressed event listeners.
-    switch (key.toLowerCase()) {
+    switch (e.key?.toLowerCase() || e.toLowerCase()) {
         case 'c':
             createCanvas(window.innerWidth, window.innerHeight);
             break;
