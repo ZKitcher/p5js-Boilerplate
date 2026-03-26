@@ -1,6 +1,15 @@
 {
     "name": "p5js-boilerplate",
+    "description": "A p5.js starter project",
+    "author": "ZKitcher",
     "version": "2.0.0",
+    "license": "MIT",
+    "keywords": [
+        "p5js",
+        "boilerplate",
+        "starter"
+    ],
+    "main": "src/main.js",
     "homepage": "https://github.com/ZKitcher/p5js-Boilerplate",
     "repository": {
         "type": "git",
