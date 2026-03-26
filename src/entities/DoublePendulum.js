@@ -25,7 +25,6 @@ export default class DoublePendulum extends GameObject {
         this.y2;
 
         this.image = this.p.createGraphics(this.p.width, this.p.height);
-        this.image.background(51);
         this.image.translate(this.cx, this.cy);
 
         this.colours = [
