@@ -1,4 +1,4 @@
-# P5.js Double Pendulum Simulation
+# P5.js Modular Boilerplate
 
 A modular p5.js boilerplate project featuring a double pendulum physics simulation. This project demonstrates advanced p5.js concepts including ES6 modules, scene management, event-driven architecture, and game object patterns.
 
