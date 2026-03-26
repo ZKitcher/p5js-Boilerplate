@@ -26,6 +26,15 @@ A modular p5.js boilerplate project featuring a double pendulum physics simulati
 
 2. Open `index.html` in your web browser
 
+**OR**
+
+- To create a clone, run `npx create-p5jsboiler` + `app-name`.
+
+```sh
+npx create-p5jsboiler app-name
+cd app-name
+```
+
 ### Usage
 
 - **Start**: Open `index.html` in a web browser
