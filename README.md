@@ -24,7 +24,11 @@ A modular p5.js boilerplate project featuring a double pendulum physics simulati
    cd p5js-Boilerplate
    ```
 
-2. Open `index.html` in your web browser
+2. Open `index.html` in your web browser **or** serve the project on a local server for live reloading. For example, using [live-server](https://www.npmjs.com/package/live-server):
+
+```bash
+npx live-server
+```
 
 **OR**
 
