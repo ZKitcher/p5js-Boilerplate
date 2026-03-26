@@ -28,6 +28,8 @@ export const EVENTS = {
     KEY_RELEASED: 'keyReleased',
     MOUSE_DOWN: 'mousePressed',
     MOUSE_UP: 'mouseReleased',
+    MOUSE_DRAGGED: 'mouseDragged',
+    MOUSE_MOVED: 'mouseMoved',
     INPUT: 0,
     UPDATE: 10,
     LATE_UPDATE: 20,

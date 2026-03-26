@@ -43,4 +43,21 @@ new p5((p) => {
             button: p.mouseButton
         });
     };
+
+    p.mouseDragged = () => {
+        emit(EVENTS.MOUSE_DRAGGED, {
+            p,
+            x: p.mouseX,
+            y: p.mouseY,
+            button: p.mouseButton
+        });
+    };
+
+    p.mouseMoved = () => {
+        emit(EVENTS.MOUSE_MOVED, {
+            p,
+            x: p.mouseX,
+            y: p.mouseY
+        });
+    };
 });
