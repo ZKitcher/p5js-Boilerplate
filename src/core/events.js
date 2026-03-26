@@ -26,6 +26,8 @@ export const EVENTS = {
     FRAME: 'frame',
     KEY_PRESSED: 'keyPressed',
     KEY_RELEASED: 'keyReleased',
+    MOUSE_DOWN: 'mousePressed',
+    MOUSE_UP: 'mouseReleased',
     INPUT: 0,
     UPDATE: 10,
     LATE_UPDATE: 20,
